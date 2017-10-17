@@ -1,0 +1,19 @@
+.contact-field {
+  margin: 10px;
+}
+
+.add-contact {
+  margin: 10px;
+}
+
+.meetup-bg {
+  margin-top: 20px;
+  background: red;
+  border-radius: 5%;
+}
+
+.contact-component {
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}

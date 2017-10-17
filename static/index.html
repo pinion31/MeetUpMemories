@@ -6,38 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="bundle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="mockData.js"></script>
+   <script type="text/javascript" src="loadMeetup.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-6">
+      <div class="row justify-content-center meetup-bg">
+        <div class="col-sm-6 col-xs-6">
           <h1> Meetup Memories </h1>
-          <div> Event goes here </div>
-          <h2> Add Contact </h2>
+          <div id="meetup-event"></div>
+          <h2> New Friends From This Meetup </h2>
+          <div class="contact-container">
+          </div>
+          <h2> Add Friend </h2>
             <div class="row">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Contact Name" aria-label="Contact Name">
+                <input type="text" class="form-control contact-field" placeholder="Contact Name" aria-label="Contact Name">
               </div>
             </div>
             <div class="row">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Job Title" aria-label="Job Title">
+                <input type="text" class="form-control contact-field" placeholder="Job Title" aria-label="Job Title">
               </div>
             </div>
             <div class="row">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
+                <input type="text" class="form-control contact-field" placeholder="Phone Number" aria-label="Phone Number">
               </div>
             </div>
             <div class="row">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Email" aria-label="Email">
+                <input type="text" class="form-control contact-field" placeholder="Email" aria-label="Email">
               </div>
             </div>
             <div class="row">
               <div class="input-group">
-                <textarea type="text" class="form-control" placeholder="Notes...." aria-label="Contact Notes"></textarea>
+                <textarea type="text" class="form-control contact-field" placeholder="Notes...." aria-label="Contact Notes"></textarea>
               </div>
+            </div>
+            <div class="row justify-content-end">
+                <button type="button" class="btn btn-primary add-contact">Add Contact</button>
             </div>
 
         </div>
