@@ -76,16 +76,28 @@ module.exports = __webpack_require__(1);
 
 __webpack_require__(2);
 __webpack_require__(4);
+__webpack_require__(5);
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
 $(document).ready(function(){
+  $("#events-list").append(
+    "<h1 class='event-list-title'> Past Events </h1>"
+  );
+
   Object.keys(myEvent).map(function(key) {
-    $("#events-list").append("<div class='card event-component'>"
-      + "<h5>" +myEvent[key].name + "</h5>" +
+    $("#events-list").append("<div class='card event-component'" +
+      "id='event-"+ key +"'>" +
+      + "<h5>" + myEvent[key].name + "</h5>" +
       "</div>");
+    console.log(myEvent[key].name);
+
+    $("#event-" + key).on('click', function() {
+      window.location.hash = "event/" + myEvent[key].id;
+      $(window).trigger('hashchange');
+    });
   });
 });
 
@@ -128,6 +140,56 @@ $(document).ready(function(){
       $("#contactNotes").val("");
     });
  });
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+$(document).ready(function(){
+
+  var currentHash = "";
+
+  $("#past-events").on("click", function() {
+      window.location.hash = "eventList";
+      $(window).trigger('hashchange');
+  });
+
+  var routeMap = [
+    {
+      className: ".contact-add-page",
+      path: "event"
+    },
+    {
+      className: ".events-page",
+      path: "eventList"
+    },
+  ];
+
+  function render(path) {
+    routeMap.forEach(function(page) {
+      if (page.path === path) {
+        $(page.className).removeClass('hidden');
+        $(page.className).addClass('visible');
+      } else {
+        $(page.className).addClass('hidden');
+        $(page.className).removeClass('visible');
+      }
+    });
+  }
+
+  $(window).on('hashchange', function() {
+    var url = decodeURI(window.location.hash);
+    var hashPath = url.split('/')[0].split("#")[1];
+
+    if (hashPath) {
+      if (currentHash !== hashPath) {
+        render(hashPath);
+        currentHash = window.location.hash;
+      }
+    }
+  });
+
+});
 
 /***/ })
 /******/ ]);

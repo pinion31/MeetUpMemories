@@ -36,6 +36,12 @@
   padding: 10px 25px;
   cursor: pointer;
   background: red;
+  color:white;
+}
+
+.event-list-title {
+  text-align: center;
+  margin: 25px 0px;
 }
 
 .hidden {
@@ -43,5 +49,5 @@
 }
 
 .visible {
-  display: flex;
+  display: block;
 }
