@@ -88,17 +88,31 @@ $(document).ready(function(){
   );
 
   Object.keys(myEvent).map(function(key) {
+
+    // creates card list of meetup events
     $("#events-list").append("<div class='card event-component'" +
       "id='event-"+ key +"'>" +
-      + "<h5>" + myEvent[key].name + "</h5>" +
+      "<h5>" + myEvent[key].name + "</h5>" +
+      "<p class='date-card-text'>" + new Date(myEvent[key].time).toDateString() + "</p>" +
+      "<p class='group-card-text'>" + myEvent[key].group.name + "</p>" +
       "</div>");
-    console.log(myEvent[key].name);
 
+    // sets listener for each event card
     $("#event-" + key).on('click', function() {
-      window.location.hash = "event/" + myEvent[key].id;
+      window.location.hash = "event/" + key;
+      buildMeetupEvent(key);
       $(window).trigger('hashchange');
     });
   });
+
+  function buildMeetupEvent(key) {
+    $("#event-title").replaceWith("<h1 id='event-title'>" + myEvent[key].name + "</h1>");
+    $("#event-venue-name").replaceWith("<h3 id='event-venue-name'>" + myEvent[key].venue.name + "</h3>");
+    $("#event-venue-address").replaceWith("<p id='event-venue-address'>" + myEvent[key].venue.address_1 + "</p>");
+    $("#event-venue-city").replaceWith( "<p id='event-venue-city'>" + myEvent[key].venue.city + ", " + myEvent[0].venue.state + "</p>");
+    $("#event-group-name").replaceWith("<h4 id='event-group-name'> By " + myEvent[key].group.name + "</h4> <br>");
+    $("#event-date").replaceWith("<h4 id='event-date'>" + new Date(myEvent[key].time).toDateString() + "</h4>");
+  }
 });
 
 /***/ }),
@@ -108,13 +122,13 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#meetup-event").append(
-      "<h1>" + myEvent[0].name + "</h1>" +
-      "<h3>" + myEvent[0].venue.name + "</h3>" +
-      "<p>" + myEvent[0].venue.address_1 + "</p>" +
-      "<p>" + myEvent[0].venue.city + ", " + myEvent[0].venue.state + "</p>" +
+      "<h1 id='event-title'></h1>" +
+      "<h3 id='event-venue-name'></h3>" +
+      "<p id='event-venue-address'></p>" +
+      "<p id='event-venue-city'></p>" +
       "<br>" +
-      "<h4> By " + myEvent[0].group.name + "</h4> <br>" +
-      "<h4>" + new Date(myEvent[0].time).toDateString() + "</h4>"
+      "<h4 id='event-group-name'></h4> <br>" +
+      "<h4 id='event-date'></h4>"
     );
 
     $(".add-contact").click(function(event) {
@@ -149,6 +163,7 @@ $(document).ready(function(){
 
   var currentHash = "";
 
+  // route to past events page;
   $("#past-events").on("click", function() {
       window.location.hash = "eventList";
       $(window).trigger('hashchange');
@@ -171,12 +186,14 @@ $(document).ready(function(){
         $(page.className).removeClass('hidden');
         $(page.className).addClass('visible');
       } else {
+          console.log('tester',window.location.hash);
         $(page.className).addClass('hidden');
         $(page.className).removeClass('visible');
       }
     });
   }
 
+  //page routing processed here
   $(window).on('hashchange', function() {
     var url = decodeURI(window.location.hash);
     var hashPath = url.split('/')[0].split("#")[1];

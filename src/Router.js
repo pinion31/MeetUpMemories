@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   var currentHash = "";
 
+  // route to past events page;
   $("#past-events").on("click", function() {
       window.location.hash = "eventList";
       $(window).trigger('hashchange');
@@ -24,12 +25,14 @@ $(document).ready(function(){
         $(page.className).removeClass('hidden');
         $(page.className).addClass('visible');
       } else {
+          console.log('tester',window.location.hash);
         $(page.className).addClass('hidden');
         $(page.className).removeClass('visible');
       }
     });
   }
 
+  //page routing processed here
   $(window).on('hashchange', function() {
     var url = decodeURI(window.location.hash);
     var hashPath = url.split('/')[0].split("#")[1];

@@ -1,12 +1,12 @@
 $(document).ready(function(){
     $("#meetup-event").append(
-      "<h1>" + myEvent[0].name + "</h1>" +
-      "<h3>" + myEvent[0].venue.name + "</h3>" +
-      "<p>" + myEvent[0].venue.address_1 + "</p>" +
-      "<p>" + myEvent[0].venue.city + ", " + myEvent[0].venue.state + "</p>" +
+      "<h1 id='event-title'></h1>" +
+      "<h3 id='event-venue-name'></h3>" +
+      "<p id='event-venue-address'></p>" +
+      "<p id='event-venue-city'></p>" +
       "<br>" +
-      "<h4> By " + myEvent[0].group.name + "</h4> <br>" +
-      "<h4>" + new Date(myEvent[0].time).toDateString() + "</h4>"
+      "<h4 id='event-group-name'></h4> <br>" +
+      "<h4 id='event-date'></h4>"
     );
 
     $(".add-contact").click(function(event) {

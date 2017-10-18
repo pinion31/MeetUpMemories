@@ -16,10 +16,31 @@
   border-radius: 5%;
 }
 
+#meetup-event {
+  background-color: white;
+  padding: 25px 15px;
+}
+
 .contact-component {
   margin: 5px;
   padding: 5px;
   cursor: pointer;
+}
+
+.date-card-text{
+  color: white;
+}
+
+.group-card-text {
+  color: black;
+  font-weight: bold;
+}
+
+.meetup-label {
+  background-color: white;
+  margin: 25px;
+  padding: 25px;
+  text-align: center;
 }
 
 .event {
