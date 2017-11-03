@@ -1,4 +1,4 @@
-$(document).ready(function(){
+  export function buildMeetupList() {
   $("#events-list").append(
     "<h1 class='event-list-title'> Past Events </h1>"
   );
@@ -20,13 +20,20 @@ $(document).ready(function(){
       $(window).trigger('hashchange');
     });
   });
+  }
 
   function buildMeetupEvent(key) {
     $("#event-title").replaceWith("<h1 id='event-title'>" + myEvent[key].name + "</h1>");
-    $("#event-venue-name").replaceWith("<h3 id='event-venue-name'>" + myEvent[key].venue.name + "</h3>");
-    $("#event-venue-address").replaceWith("<p id='event-venue-address'>" + myEvent[key].venue.address_1 + "</p>");
-    $("#event-venue-city").replaceWith( "<p id='event-venue-city'>" + myEvent[key].venue.city + ", " + myEvent[0].venue.state + "</p>");
+
+    if(myEvent[key].venue) {
+      $("#event-venue-name").replaceWith("<h3 id='event-venue-name'>" + myEvent[key].venue.name + "</h3>");
+      $("#event-venue-address").replaceWith("<p id='event-venue-address'>" + myEvent[key].venue.address_1 + "</p>");
+
+      if (myEvent[key].venue.state) {
+        $("#event-venue-city").replaceWith( "<p id='event-venue-city'>" + myEvent[key].venue.city + ", " + myEvent[0].venue.state + "</p>");
+      }
+    }
+
     $("#event-group-name").replaceWith("<h4 id='event-group-name'> By " + myEvent[key].group.name + "</h4> <br>");
     $("#event-date").replaceWith("<h4 id='event-date'>" + new Date(myEvent[key].time).toDateString() + "</h4>");
   }
-});

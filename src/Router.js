@@ -1,6 +1,23 @@
-$(document).ready(function(){
+import {buildMeetupList} from './EventList';
 
+$(document).ready(function(){
   var currentHash = "";
+
+  (function() {
+    const hash = window.location.hash.split("=");
+
+    if (hash[0] === '#access') {
+      $.getJSON('/getUserEvents', {
+        data:hash[1]
+      }, function(data) {
+        const returnData = JSON.parse(data);
+        myEvent = returnData;
+        buildMeetupList();
+        window.location.hash = "eventList";
+        $(window).trigger('hashchange');
+      });
+    }
+  })();
 
   // route to past events page;
   $("#past-events").on("click", function() {
@@ -17,6 +34,10 @@ $(document).ready(function(){
       className: ".events-page",
       path: "eventList"
     },
+    {
+      className: ".login-page",
+      path:"login"
+    }
   ];
 
   function render(path) {
@@ -25,7 +46,6 @@ $(document).ready(function(){
         $(page.className).removeClass('hidden');
         $(page.className).addClass('visible');
       } else {
-          console.log('tester',window.location.hash);
         $(page.className).addClass('hidden');
         $(page.className).removeClass('visible');
       }

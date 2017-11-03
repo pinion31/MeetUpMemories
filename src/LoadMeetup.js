@@ -31,4 +31,4 @@ $(document).ready(function(){
       $("#contactPhNumber").val("");
       $("#contactNotes").val("");
     });
- });
+});
